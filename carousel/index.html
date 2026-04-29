@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ePayco - Carouseles Métodos de Pago</title>
+    <link rel="stylesheet" href="./iframe-carousel.css" />
+  </head>
+  <body>
+    <main class="embed-page">
+      <section class="carousel-block" data-theme="light" id="block-light">
+        <header class="carousel-header">
+          <p class="carousel-title">Fondo claro</p>
+        </header>
+        <div class="ep-carousel" data-carousel data-source-type="light">
+          <img class="ep-carousel__frame" src="./frames/container_carousel_blanco.svg" alt="" aria-hidden="true" />
+          <div class="ep-carousel__viewport">
+            <button class="ep-carousel__nav" data-dir="prev" type="button" aria-label="Anterior">
+              &#8249;
+            </button>
+            <ul class="ep-carousel__track" aria-live="polite"></ul>
+            <button class="ep-carousel__nav" data-dir="next" type="button" aria-label="Siguiente">
+              &#8250;
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <section class="carousel-block" data-theme="dark" id="block-dark">
+        <header class="carousel-header">
+          <p class="carousel-title">Fondo oscuro</p>
+        </header>
+        <div class="ep-carousel" data-carousel data-source-type="dark">
+          <img class="ep-carousel__frame" src="./frames/container_carousel_oscuro.svg" alt="" aria-hidden="true" />
+          <div class="ep-carousel__viewport">
+            <button class="ep-carousel__nav" data-dir="prev" type="button" aria-label="Anterior">
+              &#8249;
+            </button>
+            <ul class="ep-carousel__track" aria-live="polite"></ul>
+            <button class="ep-carousel__nav" data-dir="next" type="button" aria-label="Siguiente">
+              &#8250;
+            </button>
+          </div>
+        </div>
+      </section>
+    </main>
+    <script src="./iframe-carousel.js"></script>
+  </body>
+</html>
