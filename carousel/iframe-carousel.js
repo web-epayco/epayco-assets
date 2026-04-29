@@ -1,7 +1,7 @@
 (function () {
   const params = new URLSearchParams(window.location.search);
-  const visibleItemsDesktop = 4;
-  const visibleItemsMobile = 2;
+  const visibleItemsDesktop = 6;
+  const visibleItemsMobile = 5;
   const defaultBranch = params.get("branch") || "main";
   const refreshMinutes = Number(params.get("refresh")) || 10;
 
@@ -19,7 +19,7 @@
 
   const inferred = inferRepoFromGithubPages();
   const owner = params.get("owner") || (inferred && inferred.owner) || "web-epayco";
-  const repo = params.get("repo") || (inferred && inferred.repo);
+  const repo = params.get("repo") || (inferred && inferred.repo) || "epayco-assets";
 
   const sources = {
     light: params.get("lightPath") || "carousel/logos/light",
