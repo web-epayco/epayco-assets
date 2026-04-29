@@ -43,6 +43,13 @@
     return ok;
   }
 
+  function setButtonState(button, state, message) {
+    button.setAttribute("data-copy-state", state);
+    button.setAttribute("data-copy-message", message);
+    button.setAttribute("title", message);
+    button.setAttribute("aria-label", message);
+  }
+
   function bindCopyButtons() {
     var buttons = document.querySelectorAll(
       ".epayco-copy-light, .epayco-copy-dark, .epayco-copy-both, [data-epayco-copy-iframe]"
@@ -62,13 +69,13 @@
 
         try {
           var ok = await copyText(iframeCode);
-          button.textContent = ok ? successLabel : errorLabel;
+          setButtonState(button, ok ? "success" : "error", ok ? successLabel : errorLabel);
         } catch (err) {
-          button.textContent = errorLabel;
+          setButtonState(button, "error", errorLabel);
         }
 
         setTimeout(function () {
-          button.textContent = label;
+          setButtonState(button, "idle", label);
         }, 1400);
       });
     });
