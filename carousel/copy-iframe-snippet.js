@@ -50,6 +50,27 @@
     button.setAttribute("aria-label", message);
   }
 
+  function showCopyFeedback(button, message, isError) {
+    var old = button.parentNode && button.parentNode.querySelector(".epayco-copy-feedback");
+    if (old) old.remove();
+
+    var feedback = document.createElement("span");
+    feedback.className = "epayco-copy-feedback";
+    feedback.textContent = message;
+    feedback.setAttribute("role", "status");
+    feedback.setAttribute("aria-live", "polite");
+    feedback.style.cssText =
+      "display:inline-block;margin-left:10px;font-size:12px;font-weight:600;" +
+      (isError ? "color:#dc2626;" : "color:#16a34a;");
+
+    if (button.parentNode) {
+      button.parentNode.appendChild(feedback);
+      setTimeout(function () {
+        if (feedback && feedback.parentNode) feedback.parentNode.removeChild(feedback);
+      }, 1800);
+    }
+  }
+
   function bindCopyButtons() {
     var buttons = document.querySelectorAll(
       ".epayco-copy-light, .epayco-copy-dark, .epayco-copy-both, [data-epayco-copy-iframe]"
@@ -70,8 +91,10 @@
         try {
           var ok = await copyText(iframeCode);
           setButtonState(button, ok ? "success" : "error", ok ? successLabel : errorLabel);
+          showCopyFeedback(button, ok ? successLabel : errorLabel, !ok);
         } catch (err) {
           setButtonState(button, "error", errorLabel);
+          showCopyFeedback(button, errorLabel, true);
         }
 
         setTimeout(function () {
